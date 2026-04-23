@@ -481,11 +481,20 @@ section { padding: 8rem 4rem; }
   overflow: hidden;
   transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.project-item.open .project-body { max-height: 300px; }
+.project-item.open .project-body { max-height: 800px; }
 .project-body-inner {
   padding: 0 2rem 2rem;
   border-top: 1px solid var(--border);
   padding-top: 1.5rem;
+}
+.project-image {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  background: var(--border);
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
 }
 .project-body-inner p {
   font-size: 0.9rem;
@@ -494,8 +503,31 @@ section { padding: 8rem 4rem; }
   max-width: 640px;
 }
 
+/* PHOTOGRAPHY */
+#photography { background: rgba(255,255,255,0.015); }
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+.photo-item {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  background: var(--border);
+  filter: grayscale(40%) contrast(1.05);
+  transition: filter 0.4s ease, transform 0.4s ease;
+  cursor: none;
+}
+.photo-item:hover {
+  filter: grayscale(0%) contrast(1);
+  transform: scale(1.02);
+  z-index: 10;
+  position: relative;
+}
+
 /* CREDENTIALS */
-#credentials { background: rgba(255,255,255,0.015); }
+#credentials { background: transparent; }
 .cred-grid {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
@@ -625,6 +657,18 @@ footer {
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
 
+/* RESPONSIVE */
+@media (max-width: 800px) {
+  nav { padding: 1.4rem 2rem; }
+  section { padding: 5rem 2rem; }
+  #hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 8rem 2rem 4rem; }
+  .hero-right { height: 60vw; }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .cred-grid { grid-template-columns: 1fr; gap: 3rem; }
+  footer { padding: 3rem 2rem; flex-direction: column; }
+  .scroll-hint { display: none; }
+}
 /* KEYFRAMES */
 @keyframes fadeSlideDown {
   from { opacity: 0; transform: translateY(-16px); }
@@ -643,19 +687,6 @@ footer {
   50% { left: 100%; }
   100% { left: 100%; }
 }
-
-/* RESPONSIVE */
-@media (max-width: 800px) {
-  nav { padding: 1.4rem 2rem; }
-  section { padding: 5rem 2rem; }
-  #hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero-left { padding: 8rem 2rem 4rem; }
-  .hero-right { height: 60vw; }
-  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .cred-grid { grid-template-columns: 1fr; gap: 3rem; }
-  footer { padding: 3rem 2rem; flex-direction: column; }
-  .scroll-hint { display: none; }
-}
 </style>
 </head>
 <body>
@@ -663,18 +694,17 @@ footer {
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- NAV -->
 <nav id="nav">
   <a href="#hero" class="nav-logo">Serdar Cvetkov</a>
   <ul>
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#photography">Photography</a></li>
     <li><a href="#credentials">Credentials</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-noise"></div>
@@ -702,7 +732,6 @@ footer {
 
 <hr class="hr">
 
-<!-- ABOUT -->
 <section id="about">
   <div class="container">
     <div class="section-header reveal">
@@ -742,7 +771,6 @@ footer {
 
 <hr class="hr">
 
-<!-- EXPERIENCE -->
 <section id="experience">
   <div class="container">
     <div class="section-header reveal">
@@ -798,7 +826,6 @@ footer {
 
 <hr class="hr">
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="container">
     <div class="section-header reveal">
@@ -866,11 +893,30 @@ footer {
 
 <hr class="hr">
 
-<!-- CREDENTIALS -->
-<section id="credentials">
+<section id="photography">
   <div class="container">
     <div class="section-header reveal">
       <span class="section-num">04</span>
+      <h2 class="section-title">Photography</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="photo-grid">
+      <img src="6.jpg" alt="Photography sample 1" class="photo-item reveal reveal-delay-1">
+      <img src="2.jpg" alt="Photography sample 2" class="photo-item reveal reveal-delay-2">
+      <img src="3.jpg" alt="Photography sample 3" class="photo-item reveal reveal-delay-3">
+      <img src="4-1.jpg" alt="Photography sample 4" class="photo-item reveal reveal-delay-4">
+      <img src="5.jpg" alt="Photography sample 5" class="photo-item reveal reveal-delay-1">
+      <img src="1.jpg" alt="Photography sample 6" class="photo-item reveal reveal-delay-2">
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<section id="credentials">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-num">05</span>
       <h2 class="section-title">Credentials</h2>
       <div class="section-rule"></div>
     </div>
@@ -902,7 +948,6 @@ footer {
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-left">
     <div class="footer-name">Serdar Cvetkov</div>
@@ -937,7 +982,7 @@ function animateRing() {
 }
 animateRing();
 
-document.querySelectorAll('a, button, .project-header').forEach(el => {
+document.querySelectorAll('a, button, .project-header, .photo-item').forEach(el => {
   el.addEventListener('mouseenter', () => {
     ring.style.width = '60px';
     ring.style.height = '60px';
